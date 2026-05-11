@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -34,6 +36,16 @@ const Login = () => {
         text: res.data.message,
         confirmButtonColor: "#2563eb",
       });
+
+      // Redirect based on role
+      const role = res.data.user.role;
+      if (role === "admin") {
+        navigate("/admin");
+      } else if (role === "organizer") {
+        navigate("/organizer");
+      } else if (role === "customer") {
+        navigate("/customer");
+      }
 
       console.log(res.data);
 
