@@ -7,6 +7,7 @@ const dotenv = require("dotenv").config();
 // EXPORT THE AUTHROUTER
 const authRouter = require("./Routers/AuthRouters/AuthRouters.js");
 const connection = require("./Configuration/Config.js");
+const organizerPost = require("./Routers/OrganizerPosts/OrganizerPosts.js");
 
 // STORE THE EXPRESS DETAILS IN ONE VARIABLE
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.urlencoded()); //form data
 
 // ROUTE MIDDLEWARE
 app.use("/api", authRouter);
+app.use("/organizerPost",organizerPost)
 
 // ARROW FUNCTION
 const listenFunction = () => {
