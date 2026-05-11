@@ -4,6 +4,9 @@ const express = require("express");
 // INITILSATION THE DOTENV FILE
 const dotenv = require("dotenv").config();
 
+// cors
+const cors=require('cors')
+
 // EXPORT THE AUTHROUTER
 const authRouter = require("./Routers/AuthRouters/AuthRouters.js");
 const connection = require("./Configuration/Config.js");
@@ -18,6 +21,9 @@ const port = process.env.PORT || 8015;
 // BUILTIN MIDDLEWARES
 app.use(express.json()); // json data
 app.use(express.urlencoded()); //form data
+
+// Core
+app.use(cors())
 
 // ROUTE MIDDLEWARE
 app.use("/api", authRouter);
