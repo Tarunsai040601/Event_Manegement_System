@@ -1,71 +1,40 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Pages
-import Register from "./Pages/Register/Register.jsx";
+import CustomerLayout from "./Layouts/CustomerLayouts.jsx";
+import AdminLayout from "./Layouts/AdminLayouts.jsx";
+import OrganizerLayout from "./Layouts/OrganizerLayouts.jsx";
+
 import Login from "./Pages/Login/Login.jsx";
+import Register from "./Pages/Register/Register.jsx";
 
-// Layouts
-import AdminLayouts from "./Layouts/AdminLayouts.jsx";
-import OrganizerLayouts from "./Layouts/OrganizerLayouts.jsx";
-import CustomerLayouts from "./Layouts/CustomerLayouts.jsx";
-
-// Protected Route Component
-const ProtectedRoute = ({ allowedRoles, children }) => {
-  const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role");
-
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (allowedRoles && !allowedRoles.includes(role)) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
-};
 
 const App = () => {
   return (
-    <Routes>
-      {/* default → login */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
+    
+      <Routes>
 
-      {/* auth pages */}
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+        {/* Customer routes default */}
+        <Route path="/" element={<CustomerLayout />}>
+       
+        </Route>
 
-      {/* Admin Dashboard */}
-      <Route
-        path="/admin/*"
-        element={
-          <ProtectedRoute allowedRoles={["admin"]}>
-            <AdminLayouts />
-          </ProtectedRoute>
-        }
-      />
+        {/* Admin routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+      
+        </Route>
 
-      {/* Organizer Dashboard */}
-      <Route
-        path="/organizer/*"
-        element={
-          <ProtectedRoute allowedRoles={["organizer"]}>
-            <OrganizerLayouts />
-          </ProtectedRoute>
-        }
-      />
+        {/* Organizer routes */}
+        <Route path="/organizer" element={<OrganizerLayout />}>
+         
+        </Route>
 
-      {/* Customer Dashboard */}
-      <Route
-        path="/customer/*"
-        element={
-          <ProtectedRoute allowedRoles={["customer"]}>
-            <CustomerLayouts />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+        {/* Common */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register/>}/>
+
+      </Routes>
+   
   );
 };
 

@@ -1,20 +1,25 @@
 import React, { useState } from "react";
+import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
-import "./Login.css";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -23,38 +28,36 @@ const Login = () => {
     try {
       const res = await axios.post(
         "http://localhost:8015/api/login",
-        form
+        formData
       );
-
-      // store token + role
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("role", res.data.user.role);
 
       Swal.fire({
         icon: "success",
         title: "Login Successful 🎉",
-        text: res.data.message,
-        confirmButtonColor: "#2563eb",
+        text: res.data.message || "Welcome back!",
+        confirmButtonColor: "#00c6ff",
       });
 
-      // Redirect based on role
-      const role = res.data.user.role;
-      if (role === "admin") {
+      // store data
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("username", res.data.user.name);
+      localStorage.setItem("role", res.data.user.role);
+
+      // role based navigation
+      if (res.data.user.role === "admin") {
         navigate("/admin");
-      } else if (role === "organizer") {
+      } else if (res.data.user.role === "organizer") {
         navigate("/organizer");
-      } else if (role === "customer") {
-        navigate("/customer");
+      } else {
+        navigate("/");
       }
-
-      console.log(res.data);
-
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Login Failed ❌",
-        text: error.response?.data?.message || "Something went wrong",
-        confirmButtonColor: "#ff4d4d",
+        title: "Login Failed",
+        text:
+          error.response?.data?.message ||
+          "Invalid credentials. Try again!",
       });
     }
   };
@@ -62,34 +65,33 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>Login</h2>
+        <h1>Welcome Back</h1>
+        <p>Login to Event Management</p>
 
         <form onSubmit={handleSubmit}>
           <input
             type="email"
-            name="email"
             placeholder="Enter Email"
-            value={form.email}
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             required
           />
 
-          {/* password with eye icon */}
-          <div className="password-box">
+          <div className="password-wrapper">
             <input
               type={showPassword ? "text" : "password"}
-              name="password"
               placeholder="Enter Password"
-              value={form.password}
+              name="password"
+              value={formData.password}
               onChange={handleChange}
               required
             />
-
             <span
               className="eye-icon"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "🙈" : "👁️"}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
 
@@ -97,7 +99,8 @@ const Login = () => {
         </form>
 
         <p className="register-text">
-          Don't have an account? <a href="/register">Register</a>
+          I don't have an account?
+          <Link to="/register"> Register</Link>
         </p>
       </div>
     </div>

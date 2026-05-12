@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.organizer-navbar {
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  background: linear-gradient(90deg, #141e30, #243b55);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.8s ease;
+}
+
+.organizer-logo h1 {
+  font-size: 28px;
+  transition: 0.3s;
+}
+
+.organizer-logo h1:hover {
+  color: #00c6ff;
+  transform: scale(1.04);
+}
+
+.organizer-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.organizer-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.organizer-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background: #00c6ff;
+  transition: 0.4s;
+}
+
+.organizer-links a:hover::after {
+  width: 100%;
+}
+
+.organizer-links a:hover {
+  color: #00c6ff;
+}
+
+.logout-btn,
+.mobile-logout-btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.logout-btn:hover,
+.mobile-logout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
+}
+
+.organizer-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.mobile-logout-btn {
+  display: none;
+}
+
+/* animations */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* tablet */
+@media (max-width: 768px) {
+  .organizer-toggle {
+    display: block;
+  }
+
+  .desktop-btn {
+    display: none;
+  }
+
+  .mobile-logout-btn {
+    display: block;
+    margin-top: 20px;
+  }
+
+  .organizer-links {
+    position: absolute;
+    top: 80px;
+    right: -100%;
+    width: 100%;
+    background: #243b55;
+    flex-direction: column;
+    padding: 30px 0;
+    gap: 20px;
+    transition: 0.5s ease-in-out;
+  }
+
+  .organizer-links.active {
+    right: 0;
+  }
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  .organizer-navbar {
+    padding: 0 20px;
+  }
+
+  .organizer-logo h1 {
+    font-size: 20px;
+  }
+
+  .organizer-links a {
+    font-size: 15px;
+  }
+}

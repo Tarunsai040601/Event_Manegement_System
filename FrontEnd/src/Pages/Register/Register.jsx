@@ -1,23 +1,27 @@
 import React, { useState } from "react";
+import "./Register.css";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import "./Register.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     role: "customer",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -26,26 +30,24 @@ const Register = () => {
     try {
       const res = await axios.post(
         "http://localhost:8015/api/register",
-        form
+        formData
       );
 
       Swal.fire({
         icon: "success",
-        title: "Registered Successfully 🎉",
-        text: "Redirecting to login...",
-        confirmButtonColor: "#6a11cb",
-      }).then(() => {
-        navigate("/login");   // 🔥 AUTO REDIRECT
+        title: "Registration Successful 🎉",
+        text: res.data.message || "User registered successfully",
+        confirmButtonColor: "#00c6ff",
       });
 
-      setForm({ name: "", email: "", password: "", role: "customer" });
-
+      navigate("/login");
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Oops!",
-        text: error.response?.data?.message || "Something went wrong",
-        confirmButtonColor: "#ff4d4d",
+        title: "Registration Failed",
+        text:
+          error.response?.data?.message ||
+          "Something went wrong. Try again!",
       });
     }
   };
@@ -53,58 +55,62 @@ const Register = () => {
   return (
     <div className="register-container">
       <div className="register-card">
-        <h2>Create Account 🚀</h2>
+        <h1>Create Account</h1>
+        <p>Join Event Management Platform</p>
 
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            name="name"
             placeholder="Enter Name"
-            value={form.name}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
           />
 
           <input
             type="email"
-            name="email"
             placeholder="Enter Email"
-            value={form.email}
+            name="email"
+            value={formData.email}
             onChange={handleChange}
             required
           />
 
-          <div className="password-box">
+          {/* Password with icon */}
+          <div className="password-wrapper">
             <input
               type={showPassword ? "text" : "password"}
-              name="password"
               placeholder="Enter Password"
-              value={form.password}
+              name="password"
+              value={formData.password}
               onChange={handleChange}
               required
             />
             <span
-              onClick={() => setShowPassword(!showPassword)}
               className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "🙈" : "👁️"}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
 
-          <select name="role" value={form.role} onChange={handleChange}>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+          >
             <option value="customer">Customer</option>
-            <option value="admin">Admin</option>
             <option value="organizer">Organizer</option>
+            <option value="admin">Admin</option>
           </select>
 
           <button type="submit">Register</button>
         </form>
 
         <p className="login-text">
-          Already have an account?{" "}
-          <span onClick={() => navigate("/login")} style={{ color: "blue", cursor: "pointer" }}>
-            Login
-          </span>
+          Already have an account?
+          <Link to="/login"> Login</Link>
         </p>
       </div>
     </div>

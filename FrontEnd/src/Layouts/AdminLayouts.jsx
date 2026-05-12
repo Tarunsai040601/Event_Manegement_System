@@ -1,13 +1,13 @@
-import React from 'react'
-import AdminNavBar from '../Components/DashBoards/AdminDashBoard/AdminNavBar/AdminNavBar'
-import {Outlet} from 'react-router-dom'
-const AdminLayouts = () => {
+import React from "react";
+import { Outlet } from "react-router-dom";
+import AdminNavBar from "../Components/DashBoards/Admin/AdminNavbar/AdminNavBar.jsx";
+const AdminLayout = () => {
   return (
-    <div>
+    <>
       <AdminNavBar/>
-      <Outlet/>
-    </div>
-  )
-}
+      <Outlet />
+    </>
+  );
+};
 
-export default AdminLayouts
+export default AdminLayout;

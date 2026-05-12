@@ -1,14 +1,14 @@
-import React from 'react'
-import OrganizerNavBar from '../Components/DashBoards/OrganizerDashBoard/OrganizerNavBar/OrganizerNavBar'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+import OrganizerNavbar from "../Components/DashBoards/Organizer/OragnizerNavbar/OrganizerNavbar.jsx";
+import { Outlet } from "react-router-dom";
 
-const OrganizerLayouts = () => {
+const OrganizerLayout = () => {
   return (
-    <div>
-      <OrganizerNavBar/>
-      <Outlet/>
-    </div>
-  )
-}
+    <>
+      <OrganizerNavbar />
+      <Outlet />
+    </>
+  );
+};
 
-export default OrganizerLayouts
+export default OrganizerLayout;

@@ -1,14 +1,14 @@
-import React from 'react'
-import CustomerNavBar from '../Components/DashBoards/CustomerBoard/CustomerNavBar/CustomerNavBar'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+import CustomerNavbar from "../Components/DashBoards/Customer/CustomerNavBar/CustomerNavbar.jsx";
+import { Outlet } from "react-router-dom";
 
-const CustomerLayouts = () => {
+const CustomerLayout = () => {
   return (
-    <div>
-      <CustomerNavBar/>
-      <Outlet/>
-    </div>
-  )
-}
+    <>
+      <CustomerNavbar />
+      <Outlet />
+    </>
+  );
+};
 
-export default CustomerLayouts
+export default CustomerLayout;
