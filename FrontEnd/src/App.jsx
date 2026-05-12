@@ -16,6 +16,7 @@ import Events from "./Components/DashBoards/Customer/Events/Events.jsx";
 import Booking from "./Components/DashBoards/Customer/BookingSlots/Booking.jsx";
 import DisplayEvents from "./Components/DashBoards/Admin/DisplayEvents/DisplayEvents.jsx";
 import BookedEvents from "./Components/DashBoards/Admin/BookedEvents/BookedEvents.jsx";
+import BookEvent from "./Components/DashBoards/Organizer/BookEvent/BookEvent.jsx";
 
 
 const App = () => {
@@ -44,9 +45,9 @@ const App = () => {
       {/* Organizer routes */}
       <Route path="/organizer" element={<OrganizerLayout />}>
         <Route index element={<OrganizerHome />} />
-
         <Route path="/organizer/eventsupload" element={<OrganizerPost/>} />
         <Route path="/organizer/showevents" element={<ShowEvents />} />
+        <Route path="/organizer/bookedevents" element={<BookEvent/>}/>
       </Route>
 
       {/* Common */}

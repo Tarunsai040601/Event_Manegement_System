@@ -36,20 +36,38 @@ const OrganizerNavbar = () => {
 
   return (
     <nav className="organizer-navbar">
+
+      {/* LOGO / DASHBOARD HOME LINK */}
       <div className="organizer-logo">
-        <h1>Organizer Dashboard</h1>
+        <Link
+          to="/organizer"
+          style={{ textDecoration: "none", color: "inherit" }}
+          onClick={() => setMenuOpen(false)}
+        >
+          <h1>Organizer Dashboard</h1>
+        </Link>
       </div>
 
+      {/* NAV LINKS */}
       <div className={`organizer-links ${menuOpen ? "active" : ""}`}>
-        <Link to="/organizer/eventsupload" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/organizer/eventsupload"
+          onClick={() => setMenuOpen(false)}
+        >
           EventsUpload
         </Link>
 
-        <Link to="/organizer/showEvents" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/organizer/showEvents"
+          onClick={() => setMenuOpen(false)}
+        >
           ShowEvents
         </Link>
 
-        <Link to="/organizer/bookedevents" onClick={() => setMenuOpen(false)}>
+        <Link
+          to="/organizer/bookedevents"
+          onClick={() => setMenuOpen(false)}
+        >
           BookedEvents
         </Link>
 
@@ -58,10 +76,12 @@ const OrganizerNavbar = () => {
         </button>
       </div>
 
+      {/* DESKTOP LOGOUT */}
       <button className="logout-btn desktop-btn" onClick={handleLogout}>
         Logout
       </button>
 
+      {/* MOBILE TOGGLE */}
       <div
         className="organizer-toggle"
         onClick={() => setMenuOpen(!menuOpen)}

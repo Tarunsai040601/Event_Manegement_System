@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CustomerHome.css";
+import { useNavigate } from "react-router-dom";
 
 const slides = [
   {
@@ -41,7 +42,9 @@ const slides = [
 
 const CustomerHome = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
+  // Auto slider
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -50,8 +53,14 @@ const CustomerHome = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Navigate to events page
+  const handleExplore = () => {
+    navigate("/events");
+  };
+
   return (
     <div className="customer-home">
+
       <div
         className="slider"
         style={{
@@ -60,12 +69,22 @@ const CustomerHome = () => {
       >
         <div className="overlay">
           <div className="content">
+
             <h1>{slides[currentSlide].title}</h1>
             <p>{slides[currentSlide].description}</p>
-            <button>Explore Events</button>
+
+            {/* Explore Button */}
+            <button
+              onClick={handleExplore}
+              className="explore-btn"
+            >
+              Explore Events
+            </button>
+
           </div>
         </div>
       </div>
+
     </div>
   );
 };
