@@ -65,9 +65,7 @@ sessionStorage.removeItem("role");
           Events
         </Link>
 
-        <Link to="/booking" onClick={() => setMenuOpen(false)}>
-          BookingEvent
-        </Link>
+       
 
         {isCustomerLoggedIn ? (
           <>

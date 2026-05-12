@@ -12,13 +12,24 @@ import OrganizerHome from "./Components/DashBoards/Organizer/OrganizerHome/Organ
 import AdminHome from "./Components/DashBoards/Admin/AdminHome/AdminHome.jsx";
 import ShowEvents from "./Components/DashBoards/Organizer/OrganizerPost/ShowEvents/ShowEvents.jsx";
 import OrganizerPost from "./Components/DashBoards/Organizer/OrganizerPost/OrganizerPost.jsx";
+import Events from "./Components/DashBoards/Customer/Events/Events.jsx";
+import Booking from "./Components/DashBoards/Customer/BookingSlots/Booking.jsx";
+
 
 const App = () => {
   return (
     <Routes>
       {/* Customer routes default */}
-      <Route path="/" element={<CustomerLayout />}>
+       <Route path="/" element={<CustomerLayout />}>
+        
+        {/* default page */}
         <Route index element={<CustomerHome />} />
+
+        {/* other customer pages */}
+        <Route path="events" element={<Events/>} />
+        <Route path="/booking" element={<Booking/>} />
+       
+
       </Route>
 
       {/* Admin routes */}

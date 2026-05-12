@@ -1,0 +1,198 @@
+
+/* ================= GLOBAL PAGE ================= */
+.ev-container {
+  padding: 100px 40px 40px 40px; /* 🔥 NAVBAR SPACE FIX */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ================= TITLE ================= */
+.ev-title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+
+  background: linear-gradient(90deg, #00c6ff, #ff512f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: fadeDown 1s ease;
+}
+
+/* ================= GRID ================= */
+.ev-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* ================= CARD ================= */
+.ev-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border-radius: 18px;
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.ev-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+}
+
+/* ================= IMAGE ================= */
+.ev-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: 0.4s ease;
+}
+
+.ev-card:hover .ev-img {
+  transform: scale(1.08);
+}
+
+/* ================= DESCRIPTION ================= */
+.ev-desc {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 10px;
+}
+
+/* ================= INFO ROW ================= */
+.ev-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+/* ================= BUTTONS ================= */
+.ev-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.ev-btns button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #fff;
+}
+
+/* SEE MORE */
+.ev-btn-more {
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+}
+
+/* BOOK */
+.ev-btn-book {
+  background: linear-gradient(45deg, #ff512f, #dd2476);
+}
+
+.ev-btn-more:hover,
+.ev-btn-book:hover {
+  transform: scale(1.1);
+}
+
+/* ================= MODAL ================= */
+.ev-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.ev-modal-content {
+  width: 450px;
+  background: #1e1e2f;
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  animation: zoomIn 0.3s ease;
+}
+
+.ev-modal-content img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.ev-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .ev-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .ev-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ev-container {
+    padding: 90px 15px 20px 15px;
+  }
+
+  .ev-modal-content {
+    width: 90%;
+  }
+
+  .ev-title {
+    font-size: 36px;
+  }
+}

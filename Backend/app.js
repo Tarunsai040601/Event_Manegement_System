@@ -11,6 +11,7 @@ const cors=require('cors')
 const authRouter = require("./Routers/AuthRouters/AuthRouters.js");
 const connection = require("./Configuration/Config.js");
 const organizerPost = require("./Routers/OrganizerPosts/OrganizerPosts.js");
+const Bookingrouter = require("./Routers/BookingRouter/bookingRoutes.js");
 
 
 // STORE THE EXPRESS DETAILS IN ONE VARIABLE
@@ -28,7 +29,8 @@ app.use(cors())
 
 // ROUTE MIDDLEWARE
 app.use("/api", authRouter);
-app.use("/organizerPost",organizerPost)
+app.use("/organizerPost",organizerPost);
+app.use("/booking",Bookingrouter)
 
 // ARROW FUNCTION
 const listenFunction = () => {
