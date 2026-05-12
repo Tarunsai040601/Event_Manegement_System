@@ -7,6 +7,11 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
 
+    email: {
+      type: String, // ✅ ADD THIS (for Nodemailer)
+      required: true,
+    },
+
     eventName: {
       type: String,
       required: true,
@@ -26,8 +31,6 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
-  
   },
   { timestamps: true }
 );

@@ -1,4 +1,5 @@
 const Booking = require("../../Model/BookingSchema/BookingSchema.js");
+const sendMail = require("../../utils/sendMail.js");
 
 // ================= CREATE BOOKING =================
 const createBooking = async (req, res) => {
@@ -11,15 +12,17 @@ const createBooking = async (req, res) => {
       eventName,
     } = req.body;
 
-    if (!name || !location || !age || !qualification || !eventName) {
+    const email = req.user?.email; // ✅ from JWT middleware
+
+    if (!name || !location || !age || !qualification || !eventName || !email) {
       return res.status(400).json({
         message: "All fields required",
       });
     }
 
-    // 🔥 DUPLICATE CHECK (MAIN FIX)
+    // 🔥 Duplicate check (better unique check)
     const existingBooking = await Booking.findOne({
-      name,
+      email,
       eventName,
     });
 
@@ -31,6 +34,7 @@ const createBooking = async (req, res) => {
 
     const newBooking = new Booking({
       name,
+      email,
       location,
       age,
       qualification,
@@ -39,8 +43,28 @@ const createBooking = async (req, res) => {
 
     await newBooking.save();
 
+    // 📧 SEND EMAIL AFTER BOOKING
+    await sendMail(
+      email,
+      "🎉 Event Booking Confirmation",
+      `
+        <h2>Booking Successful 🎉</h2>
+        <p>Hi ${name},</p>
+
+        <p>You successfully booked:</p>
+        <h3>${eventName}</h3>
+
+        <p><b>Location:</b> ${location}</p>
+        <p><b>Age:</b> ${age}</p>
+        <p><b>Qualification:</b> ${qualification}</p>
+
+        <br/>
+        <p>Thank you for booking with us 🙌</p>
+      `
+    );
+
     res.status(201).json({
-      message: "Booking successful",
+      message: "Booking successful & email sent",
       data: newBooking,
     });
 
@@ -49,11 +73,12 @@ const createBooking = async (req, res) => {
   }
 };
 
-
 // ================= GET BOOKINGS =================
 const getMyBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find();
+    const email = req.user?.email; // ✅ filter per user
+
+    const bookings = await Booking.find({ email });
 
     res.status(200).json({
       message: "Bookings fetched successfully",

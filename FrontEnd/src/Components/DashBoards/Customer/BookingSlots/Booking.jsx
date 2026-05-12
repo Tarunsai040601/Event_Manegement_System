@@ -9,6 +9,7 @@ const Booking = () => {
   const navigate = useNavigate();
 
   const event = location.state?.event;
+
   const username = sessionStorage.getItem("username");
   const token = sessionStorage.getItem("token");
 
@@ -18,7 +19,7 @@ const Booking = () => {
     qualification: "",
   });
 
-  // 🔐 Redirect if event missing
+  // 🔐 redirect if event missing
   useEffect(() => {
     if (!event) {
       navigate("/events");
@@ -64,14 +65,14 @@ const Booking = () => {
         }
       );
 
-      // ✅ success + redirect to events on OK click
+      // 🎉 SUCCESS
       Swal.fire({
         icon: "success",
-        title: "Booking Successful",
+        title: "Booking Successful 🎉",
         text: res.data.message,
         confirmButtonText: "OK",
       }).then(() => {
-        navigate("/events"); // 🔥 go to events page
+        navigate("/events"); // redirect back
       });
 
     } catch (error) {
@@ -99,48 +100,43 @@ const Booking = () => {
 
       <form onSubmit={handleSubmit} className="booking-form">
 
-        {/* 👤 Username */}
-        <input
-          type="text"
-          value={username || ""}
-          readOnly
-        />
+        {/* 👤 USER */}
+        <input type="text" value={username || ""} readOnly />
 
-        {/* 🎯 Event Name */}
-        <input
-          type="text"
-          value={event?.title || ""}
-          readOnly
-        />
+        {/* 🎯 EVENT */}
+        <input type="text" value={event?.title || ""} readOnly />
 
-        {/* 📍 Location */}
+        {/* 📍 LOCATION */}
         <input
           type="text"
           name="location"
-          placeholder="Location"
+          placeholder="Enter Location"
           onChange={handleChange}
           required
         />
 
-        {/* 🎂 Age */}
+        {/* 🎂 AGE */}
         <input
           type="number"
           name="age"
-          placeholder="Age"
+          placeholder="Enter Age"
           onChange={handleChange}
           required
         />
 
-        {/* 🎓 Qualification */}
+        {/* 🎓 QUALIFICATION */}
         <input
           type="text"
           name="qualification"
-          placeholder="Qualification"
+          placeholder="Enter Qualification"
           onChange={handleChange}
           required
         />
 
-        <button type="submit">Book Now</button>
+        <button type="submit">
+          Book Now
+        </button>
+
       </form>
     </div>
   );
