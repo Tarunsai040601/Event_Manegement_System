@@ -91,13 +91,6 @@ const updatepostcontroller = async (req, res) => {
   try {
     const { id } = req.params;
 
-    if (!id) {
-      return res.status(400).json({ message: "Post ID is required" });
-    }
-
-    console.log("UPDATE BODY:", req.body);
-
-    //  SAFE mapping (IMPORTANT FIX)
     let updatedData = {
       title: req.body.title,
       desc: req.body.desc,
@@ -108,7 +101,7 @@ const updatepostcontroller = async (req, res) => {
       price: req.body.price,
     };
 
-    // 🖼️ Image update (Cloudinary)
+    // 🔥 IMAGE UPDATE FIX
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path, {
         folder: "organizer_posts",
@@ -117,7 +110,6 @@ const updatepostcontroller = async (req, res) => {
       updatedData.image = result.secure_url;
     }
 
-    // 🔥 Update query
     const updatedPost = await postModel.findByIdAndUpdate(
       id,
       { $set: updatedData },

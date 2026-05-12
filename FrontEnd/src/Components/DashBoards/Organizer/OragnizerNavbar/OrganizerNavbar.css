@@ -14,7 +14,12 @@
   justify-content: space-between;
   align-items: center;
   color: white;
-  position: relative;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   animation: slideDown 0.8s ease;
 }
@@ -22,6 +27,7 @@
 .organizer-logo h1 {
   font-size: 28px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .organizer-logo h1:hover {
@@ -90,7 +96,7 @@
   display: none;
 }
 
-/* animations */
+/* Animation */
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
@@ -102,7 +108,7 @@
   }
 }
 
-/* tablet */
+/* Tablet */
 @media (max-width: 768px) {
   .organizer-toggle {
     display: block;
@@ -134,7 +140,7 @@
   }
 }
 
-/* mobile */
+/* Mobile */
 @media (max-width: 480px) {
   .organizer-navbar {
     padding: 0 20px;

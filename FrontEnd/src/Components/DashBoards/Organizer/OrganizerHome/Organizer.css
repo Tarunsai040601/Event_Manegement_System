@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.organizer-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f7f9fc;
+  padding-top: 80px;
+}
+
+/* Hero Section */
+.hero-section {
+  width: 100%;
+  min-height: 85vh;
+  background-image: url("https://images.unsplash.com/photo-1511578314322-379afb476865");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  width: 100%;
+  min-height: 85vh;
+  background: rgba(0, 0, 0, 0.62);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.hero-content {
+  max-width: 850px;
+  color: white;
+  animation: fadeUp 1s ease;
+}
+
+.hero-content h1 {
+  font-size: 56px;
+  color: #00d9ff;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.hero-content p {
+  font-size: 23px;
+  line-height: 1.7;
+}
+
+/* Cards Section */
+.cards-container {
+  width: 90%;
+  margin: 60px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.event-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  transition: 0.4s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-12px);
+}
+
+.event-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.event-card h2 {
+  font-size: 28px;
+  color: #243b55;
+  padding: 20px 20px 10px;
+}
+
+.event-card p {
+  font-size: 17px;
+  color: #666;
+  padding: 0 20px 25px;
+  line-height: 1.6;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 42px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-section,
+  .overlay {
+    min-height: 70vh;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    width: 92%;
+    margin: 40px auto;
+  }
+
+  .event-card img {
+    height: 220px;
+  }
+
+  .event-card h2 {
+    font-size: 22px;
+  }
+
+  .event-card p {
+    font-size: 15px;
+  }
+}

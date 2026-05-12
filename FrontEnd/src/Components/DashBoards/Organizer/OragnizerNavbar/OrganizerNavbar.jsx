@@ -45,6 +45,10 @@ const OrganizerNavbar = () => {
           EventsUpload
         </Link>
 
+        <Link to="/organizer/showEvents" onClick={() => setMenuOpen(false)}>
+          ShowEvents
+        </Link>
+
         <Link to="/organizer/bookedevents" onClick={() => setMenuOpen(false)}>
           BookedEvents
         </Link>

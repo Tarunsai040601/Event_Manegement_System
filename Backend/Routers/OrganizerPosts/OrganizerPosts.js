@@ -2,8 +2,9 @@
 const expree = require("express");
 const {
   getpostController,
-  postController,
+
   getbyidcontroller,
+  postController,
   updatepostcontroller,
   deletepostcontroller,
 } = require("../../Controllers/OrganisationPostController/organizepostController.js");
@@ -14,27 +15,28 @@ const roleMiddleware = require("../../Middleware/roleMiddleware/roleMiddleware.j
 // store the express with router
 const organizerPost = expree.Router();
 
-organizerPost.get("/get",getpostController)
+organizerPost.get("/get", getpostController);
 organizerPost.post(
   "/post",
   authMiddleware,
   roleMiddleware("organizer"),
   upload.single("image"),
-  postController
+  postController,
 );
 
 organizerPost.patch(
   "/update/:id",
   authMiddleware,
   roleMiddleware("organizer"),
-  updatepostcontroller
+  upload.single("image"),
+  updatepostcontroller,
 );
 
 organizerPost.delete(
   "/delete/:id",
   authMiddleware,
   roleMiddleware("organizer"),
-  deletepostcontroller
+  deletepostcontroller,
 );
 
 // module exports

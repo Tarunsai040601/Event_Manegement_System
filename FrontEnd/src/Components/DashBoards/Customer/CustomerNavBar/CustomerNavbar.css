@@ -19,7 +19,12 @@ body {
   justify-content: space-between;
   align-items: center;
   color: white;
-  position: relative;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   animation: slideDown 0.8s ease;
 }
@@ -111,7 +116,7 @@ body {
   font-weight: 600;
 }
 
-/* Mobile Welcome hidden by default */
+/* Mobile Welcome */
 .mobile-welcome-text {
   display: none;
   color: white;

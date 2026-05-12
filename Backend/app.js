@@ -12,6 +12,7 @@ const authRouter = require("./Routers/AuthRouters/AuthRouters.js");
 const connection = require("./Configuration/Config.js");
 const organizerPost = require("./Routers/OrganizerPosts/OrganizerPosts.js");
 
+
 // STORE THE EXPRESS DETAILS IN ONE VARIABLE
 const app = express();
 
