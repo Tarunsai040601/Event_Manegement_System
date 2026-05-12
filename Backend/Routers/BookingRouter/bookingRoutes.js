@@ -19,7 +19,7 @@ Bookingrouter.post(
 //  USER BOOKINGS
 Bookingrouter.get(
   "/my",
-  getMyBookings,
+  getMyBookings
 );
 
 module.exports = Bookingrouter;

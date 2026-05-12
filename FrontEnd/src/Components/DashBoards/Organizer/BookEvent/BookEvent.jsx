@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import './BookEvent.css'
+import "./BookEvent.css";
+
 const BookEvent = () => {
-    const [bookings, setBookings] = useState([]);
+  const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchBookings = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+
+      const res = await axios.get(
+        "http://localhost:8015/booking/my",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data =
+        res.data?.data ||
+        res.data?.bookings ||
+        res.data?.result ||
+        res.data ||
+        [];
+
+      setBookings(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.log("Error fetching bookings:", error);
+      setBookings([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchBookings = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:8015/booking/my"
-        );
-
-        const data =
-          res.data?.data ||
-          res.data?.bookings ||
-          res.data?.result ||
-          res.data ||
-          [];
-
-        setBookings(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.log("Error fetching bookings:", error);
-        setBookings([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchBookings();
   }, []);
 
@@ -46,6 +54,7 @@ const BookEvent = () => {
               <tr>
                 <th>S.no</th>
                 <th>Name</th>
+                <th>Email</th>
                 <th>Event Name</th>
                 <th>Location</th>
                 <th>Qualification</th>
@@ -58,6 +67,7 @@ const BookEvent = () => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{b.name || "N/A"}</td>
+                  <td>{b.email || "N/A"}</td>
                   <td>{b.eventName || "N/A"}</td>
                   <td>{b.location || "N/A"}</td>
                   <td>{b.qualification || "N/A"}</td>
@@ -70,6 +80,6 @@ const BookEvent = () => {
       </div>
     </div>
   );
-}
+};
 
-export default BookEvent
+export default BookEvent;
