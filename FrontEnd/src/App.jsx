@@ -14,6 +14,8 @@ import ShowEvents from "./Components/DashBoards/Organizer/OrganizerPost/ShowEven
 import OrganizerPost from "./Components/DashBoards/Organizer/OrganizerPost/OrganizerPost.jsx";
 import Events from "./Components/DashBoards/Customer/Events/Events.jsx";
 import Booking from "./Components/DashBoards/Customer/BookingSlots/Booking.jsx";
+import DisplayEvents from "./Components/DashBoards/Admin/DisplayEvents/DisplayEvents.jsx";
+import BookedEvents from "./Components/DashBoards/Admin/BookedEvents/BookedEvents.jsx";
 
 
 const App = () => {
@@ -35,6 +37,8 @@ const App = () => {
       {/* Admin routes */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminHome />} />
+        <Route path="/admin/events" element={<DisplayEvents/>}/>
+        <Route path="/admin/bookedevents" element={<BookedEvents/>}/>
       </Route>
 
       {/* Organizer routes */}

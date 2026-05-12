@@ -1,0 +1,96 @@
+.org-container {
+  padding: 30px;
+  min-height: 100vh;
+  background: #f6f7fb;
+  font-family: Arial;
+}
+
+.org-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+/* GRID */
+.org-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  justify-items: center;
+}
+
+/* CARD */
+.org-card {
+  width: 300px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition: 0.3s;
+}
+
+.org-card:hover {
+  transform: translateY(-6px);
+}
+
+/* IMAGE */
+.org-img {
+  height: 170px;
+  overflow: hidden;
+}
+
+.org-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* BODY */
+.org-body {
+  padding: 15px;
+}
+
+.org-body h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.org-body p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* INFO */
+.org-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #444;
+}
+
+/* MESSAGE */
+.org-msg {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .org-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .org-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .org-card {
+    width: 90%;
+  }
+}

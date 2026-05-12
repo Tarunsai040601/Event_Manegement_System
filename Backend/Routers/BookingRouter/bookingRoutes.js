@@ -19,8 +19,6 @@ Bookingrouter.post(
 //  USER BOOKINGS
 Bookingrouter.get(
   "/my",
-  authMiddleware,
-  roleMiddleware("customer"),
   getMyBookings,
 );
 

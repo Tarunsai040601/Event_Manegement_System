@@ -53,7 +53,7 @@ const createBooking = async (req, res) => {
 // ================= GET BOOKINGS =================
 const getMyBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find().sort({ createdAt: -1 });
+    const bookings = await Booking.find();
 
     res.status(200).json({
       message: "Bookings fetched successfully",

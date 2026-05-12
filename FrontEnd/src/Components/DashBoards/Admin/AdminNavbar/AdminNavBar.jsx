@@ -36,7 +36,13 @@ const AdminNavBar = () => {
 
   return (
     <nav className="admin-navbar">
-      <div className="admin-logo">
+
+      {/* ✅ CLICKABLE LOGO / TITLE */}
+      <div
+        className="admin-logo"
+        onClick={() => navigate("/admin")}
+        style={{ cursor: "pointer" }}
+      >
         <h1>Admin Dashboard</h1>
       </div>
 

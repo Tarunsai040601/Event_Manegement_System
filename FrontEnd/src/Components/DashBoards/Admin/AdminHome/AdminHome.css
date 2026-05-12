@@ -1,0 +1,163 @@
+.admin-container {
+  padding: 30px;
+  min-height: 100vh;
+  font-family: Arial;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* layout */
+.stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.top-row {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* CARD */
+.card {
+  width: 240px;
+  height: 180px;
+  border-radius: 18px;
+  padding: 15px;
+
+  color: white;
+  position: relative;
+
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+  transform: perspective(900px) rotateX(6deg) rotateY(-6deg);
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: perspective(900px) rotateX(0) rotateY(0) scale(1.05);
+}
+
+/* ICON */
+.icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.card h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.card p {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+/* COLORS */
+.users {
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
+}
+
+.events {
+  background: linear-gradient(135deg, #10b981, #34d399);
+}
+
+.bookings {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+/* MINI GRAPH */
+.graph {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 40px;
+}
+
+.graph span {
+  width: 5px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 3px;
+  animation: grow 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes grow {
+  from { transform: scaleY(0.6); }
+  to { transform: scaleY(1); }
+}
+
+/* RESPONSIVE - TABLET */
+@media (max-width: 768px) {
+  .top-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    height: 170px;
+  }
+}
+
+/* RESPONSIVE - MOBILE (MAIN FIX) */
+@media (max-width: 480px) {
+
+  .title {
+    font-size: 22px;
+  }
+
+  .card {
+    width: 95%;
+    height: 160px;   /* better fit for mobile */
+    padding: 12px;
+    transform: none; /* remove 3D tilt for better mobile UX */
+  }
+
+  .card:hover {
+    transform: scale(1.03); /* simple hover effect */
+  }
+
+  .icon {
+    font-size: 24px;
+  }
+
+  .card h2 {
+    font-size: 16px;
+  }
+
+  .card p {
+    font-size: 22px;
+  }
+
+  .graph {
+    height: 30px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .graph span {
+    width: 4px;
+  }
+}
