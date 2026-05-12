@@ -9,6 +9,7 @@ body {
   background: #f4f4f4;
 }
 
+/* Navbar */
 .navbar {
   width: 100%;
   height: 80px;
@@ -19,10 +20,11 @@ body {
   align-items: center;
   color: white;
   position: relative;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   animation: slideDown 0.8s ease;
 }
 
+/* Logo */
 .logo h1 {
   font-size: 28px;
   cursor: pointer;
@@ -34,6 +36,7 @@ body {
   color: #00d9ff;
 }
 
+/* Nav Links */
 .nav-links {
   display: flex;
   gap: 30px;
@@ -67,6 +70,7 @@ body {
   color: #00d9ff;
 }
 
+/* Buttons */
 .login-btn,
 .mobile-login-btn {
   padding: 10px 22px;
@@ -78,6 +82,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.4s;
+  font-weight: 600;
 }
 
 .login-btn:hover,
@@ -86,16 +91,14 @@ body {
   box-shadow: 0 8px 20px rgba(0, 217, 255, 0.4);
 }
 
+/* Toggle */
 .toggle {
   display: none;
   font-size: 28px;
   cursor: pointer;
 }
 
-.mobile-login-btn {
-  display: none;
-}
-
+/* Desktop User */
 .desktop-user-section {
   display: flex;
   align-items: center;
@@ -108,18 +111,20 @@ body {
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
-  .desktop-user-section {
-    display: none;
-  }
-
-  .welcome-text {
-    margin-top: 10px;
-    font-size: 15px;
-  }
+/* Mobile Welcome hidden by default */
+.mobile-welcome-text {
+  display: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-/* animation */
+/* Mobile button hidden desktop */
+.mobile-login-btn {
+  display: none;
+}
+
+/* Animation */
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
@@ -131,10 +136,18 @@ body {
   }
 }
 
-/* Tablet */
+/* Tablet & Mobile */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
   .toggle {
     display: block;
+  }
+
+  .desktop-user-section {
+    display: none;
   }
 
   .desktop-btn {
@@ -143,7 +156,13 @@ body {
 
   .mobile-login-btn {
     display: block;
-    margin-top: 20px;
+    margin-top: 15px;
+  }
+
+  .mobile-welcome-text {
+    display: block;
+    margin-top: 15px;
+    font-size: 15px;
   }
 
   .nav-links {
@@ -156,6 +175,7 @@ body {
     padding: 30px 0;
     gap: 20px;
     transition: 0.5s ease-in-out;
+    z-index: 999;
   }
 
   .nav-links.active {
@@ -163,17 +183,23 @@ body {
   }
 }
 
-/* Phone */
+/* Small Phones */
 @media (max-width: 480px) {
-  .navbar {
-    padding: 0 20px;
-  }
-
   .logo h1 {
     font-size: 20px;
   }
 
   .nav-links a {
     font-size: 16px;
+  }
+
+  .mobile-welcome-text {
+    font-size: 14px;
+  }
+
+  .login-btn,
+  .mobile-login-btn {
+    padding: 8px 18px;
+    font-size: 14px;
   }
 }

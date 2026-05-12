@@ -26,10 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:8015/api/login",
-        formData
-      );
+      const res = await axios.post("http://localhost:8015/api/login", formData);
 
       Swal.fire({
         icon: "success",
@@ -39,9 +36,9 @@ const Login = () => {
       });
 
       // store data
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("username", res.data.user.name);
-      localStorage.setItem("role", res.data.user.role);
+      sessionStorage.setItem("token", res.data.token);
+      sessionStorage.setItem("username", res.data.user.name);
+      sessionStorage.setItem("role", res.data.user.role);
 
       // role based navigation
       if (res.data.user.role === "admin") {
@@ -56,8 +53,7 @@ const Login = () => {
         icon: "error",
         title: "Login Failed",
         text:
-          error.response?.data?.message ||
-          "Invalid credentials. Try again!",
+          error.response?.data?.message || "Invalid credentials. Try again!",
       });
     }
   };

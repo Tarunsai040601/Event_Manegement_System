@@ -7,9 +7,11 @@ import Swal from "sweetalert2";
 const CustomerNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+const token = sessionStorage.getItem("token");
+const username = sessionStorage.getItem("username");
+const role = sessionStorage.getItem("role");
 
-  const token = localStorage.getItem("token");
-  const username = localStorage.getItem("username");
+  const isCustomerLoggedIn = token && role === "customer";
 
   const handleLogin = () => {
     Swal.fire({
@@ -36,11 +38,11 @@ const CustomerNavbar = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("username");
-        localStorage.removeItem("role");
+        sessionStorage.removeItem("token");
+sessionStorage.removeItem("username");
+sessionStorage.removeItem("role");
 
-        navigate("/");
+        navigate("/login");
         window.location.reload();
       }
     });
@@ -48,25 +50,29 @@ const CustomerNavbar = () => {
 
   return (
     <nav className="navbar">
+      {/* Logo */}
       <div className="logo">
         <h1>EventManagement</h1>
       </div>
 
+      {/* Nav Links */}
       <div className={`nav-links ${menuOpen ? "active" : ""}`}>
         <Link to="/" onClick={() => setMenuOpen(false)}>
           Home
         </Link>
+
         <Link to="/events" onClick={() => setMenuOpen(false)}>
           Events
         </Link>
+
         <Link to="/booking" onClick={() => setMenuOpen(false)}>
           BookingEvent
         </Link>
 
-        {token ? (
+        {isCustomerLoggedIn ? (
           <>
-            <span className="welcome-text">
-              Welcome : {username} 👋
+            <span className="mobile-welcome-text">
+              Welcome :Hi..! {username} 👋
             </span>
 
             <button
@@ -86,22 +92,34 @@ const CustomerNavbar = () => {
         )}
       </div>
 
-      {token ? (
+      {/* Desktop User Section */}
+      {isCustomerLoggedIn ? (
         <div className="desktop-user-section">
           <span className="welcome-text">
-            Welcome : {username} 👋
+            Welcome :Hi..! {username} 👋
           </span>
-          <button className="login-btn desktop-btn" onClick={handleLogout}>
+
+          <button
+            className="login-btn desktop-btn"
+            onClick={handleLogout}
+          >
             Logout
           </button>
         </div>
       ) : (
-        <button className="login-btn desktop-btn" onClick={handleLogin}>
+        <button
+          className="login-btn desktop-btn"
+          onClick={handleLogin}
+        >
           Login
         </button>
       )}
 
-      <div className="toggle" onClick={() => setMenuOpen(!menuOpen)}>
+      {/* Toggle */}
+      <div
+        className="toggle"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
         {menuOpen ? <FaTimes /> : <FaBars />}
       </div>
     </nav>
