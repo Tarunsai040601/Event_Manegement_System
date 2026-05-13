@@ -6,12 +6,16 @@ const createBooking = async (req, res) => {
   try {
     const { name, location, age, qualification, eventName } = req.body;
 
+    console.log("Booking Request Body:", req.body);
+    console.log("Decoded User:", req.user);
+
     const email = req.user?.email;
 
-    console.log("Logged User:", req.user);
     console.log("Recipient Email:", email);
 
+    // validation
     if (!name || !location || !age || !qualification || !eventName || !email) {
+      console.log("Validation failed: Missing fields");
       return res.status(400).json({
         message: "All fields required",
       });
@@ -24,6 +28,7 @@ const createBooking = async (req, res) => {
     });
 
     if (existingBooking) {
+      console.log("Duplicate booking found");
       return res.status(400).json({
         message: "You already have booked this event",
       });
@@ -40,8 +45,9 @@ const createBooking = async (req, res) => {
     });
 
     await newBooking.save();
+    console.log("Booking saved successfully");
 
-    // send response immediately
+    // immediate response
     res.status(201).json({
       message: "Booking successful",
       data: newBooking,
@@ -52,64 +58,82 @@ const createBooking = async (req, res) => {
       email,
       "🎉 Event Booking Confirmation",
       `
-      <div style="font-family: Arial, sans-serif; background:#f4f6f9; padding:30px;">
+      <div style="margin:0;padding:0;background-color:#f4f7fb;font-family:Arial,sans-serif;">
+    
         <div style="
-          max-width:600px;
-          margin:auto;
-          background:white;
-          border-radius:12px;
+          max-width:650px;
+          margin:30px auto;
+          background:#ffffff;
+          border-radius:15px;
           overflow:hidden;
-          box-shadow:0 4px 12px rgba(0,0,0,0.15);
+          box-shadow:0 6px 18px rgba(0,0,0,0.15);
         ">
 
           <div style="
             background:linear-gradient(135deg,#28a745,#20c997);
             color:white;
-            padding:25px;
+            padding:30px;
             text-align:center;
           ">
-            <h1 style="margin:0;">✅ Booking Confirmed</h1>
-            <p style="margin-top:8px;">Your event has been booked successfully</p>
+            <h1 style="margin:0;font-size:28px;">✅ Booking Approved</h1>
+            <p style="margin-top:10px;font-size:16px;">
+              Your event booking has been confirmed successfully
+            </p>
           </div>
 
-          <div style="padding:30px; color:#333;">
-            <h2>Hello ${name}, 👋</h2>
-            <p>Your booking has been confirmed successfully.</p>
+          <div style="padding:30px;color:#333;">
+            <h2 style="margin-top:0;">Hello ${name} 👋</h2>
 
-            <table style="width:100%; border-collapse:collapse; margin-top:20px;">
-              <tr>
-                <td style="padding:12px; border:1px solid #ddd;"><b>🎫 Event</b></td>
-                <td style="padding:12px; border:1px solid #ddd;">${eventName}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px; border:1px solid #ddd;"><b>📍 Location</b></td>
-                <td style="padding:12px; border:1px solid #ddd;">${location}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px; border:1px solid #ddd;"><b>🎂 Age</b></td>
-                <td style="padding:12px; border:1px solid #ddd;">${age}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px; border:1px solid #ddd;"><b>🎓 Qualification</b></td>
-                <td style="padding:12px; border:1px solid #ddd;">${qualification}</td>
-              </tr>
-            </table>
+            <p>
+              Great news! Your booking request has been 
+              <span style="color:#28a745;font-weight:bold;">
+                approved successfully
+              </span>.
+            </p>
+
+            <div style="
+              margin-top:20px;
+              border:1px solid #e5e5e5;
+              border-radius:10px;
+              overflow:hidden;
+            ">
+
+              <div style="display:flex;border-bottom:1px solid #eee;">
+                <div style="width:40%;padding:14px;background:#fafafa;font-weight:bold;">🎫 Event Name</div>
+                <div style="width:60%;padding:14px;">${eventName}</div>
+              </div>
+
+              <div style="display:flex;border-bottom:1px solid #eee;">
+                <div style="width:40%;padding:14px;background:#fafafa;font-weight:bold;">📍 Location</div>
+                <div style="width:60%;padding:14px;">${location}</div>
+              </div>
+
+              <div style="display:flex;border-bottom:1px solid #eee;">
+                <div style="width:40%;padding:14px;background:#fafafa;font-weight:bold;">🎂 Age</div>
+                <div style="width:60%;padding:14px;">${age}</div>
+              </div>
+
+              <div style="display:flex;">
+                <div style="width:40%;padding:14px;background:#fafafa;font-weight:bold;">🎓 Qualification</div>
+                <div style="width:60%;padding:14px;">${qualification}</div>
+              </div>
+            </div>
 
             <div style="
               margin-top:25px;
-              padding:15px;
-              background:#e8f8ee;
+              background:#e9f9ef;
               border-left:5px solid #28a745;
+              padding:16px;
               border-radius:8px;
             ">
-              <p style="margin:0; color:#155724;">
-                🎉 <b>Status:</b> Approved & Confirmed
+              <p style="margin:0;color:#155724;font-weight:bold;">
+                🎉 Status: Approved & Confirmed
               </p>
             </div>
 
-            <p style="margin-top:25px;">
-              Thank you for booking with us 🙌 <br/>
-              We look forward to seeing you at the event.
+            <p style="margin-top:25px;line-height:1.7;">
+              Thank you for choosing our Event Management platform.  
+              We are excited to have you at the event 🙌
             </p>
           </div>
 
@@ -117,10 +141,11 @@ const createBooking = async (req, res) => {
             background:#f8f9fa;
             padding:18px;
             text-align:center;
-            font-size:14px;
             color:#666;
+            font-size:14px;
           ">
-            © 2026 Event Management System | All Rights Reserved
+            © 2026 Event Management System <br/>
+            All Rights Reserved
           </div>
         </div>
       </div>
@@ -130,6 +155,8 @@ const createBooking = async (req, res) => {
     });
 
   } catch (error) {
+    console.log("Controller Error:", error.message);
+
     res.status(500).json({
       message: error.message,
     });
@@ -146,6 +173,8 @@ const getMyBookings = async (req, res) => {
       data: bookings,
     });
   } catch (error) {
+    console.log("Fetch Booking Error:", error.message);
+
     res.status(500).json({
       message: error.message,
     });
