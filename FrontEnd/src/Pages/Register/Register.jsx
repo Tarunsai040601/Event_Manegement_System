@@ -29,7 +29,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "https://platfrombooking.onrender.com/api/register",
+        "https://emailcase.onrender.com/api/register",
         formData
       );
 

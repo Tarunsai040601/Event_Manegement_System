@@ -60,7 +60,7 @@ const Booking = () => {
       };
 
       const res = await axios.post(
-        "https://platfrombooking.onrender.com/booking/create",
+        "https://emailcase.onrender.com/booking/create",
         payload,
         {
           headers: {

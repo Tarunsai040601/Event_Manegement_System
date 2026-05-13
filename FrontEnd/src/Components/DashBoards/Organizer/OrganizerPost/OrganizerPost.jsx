@@ -83,7 +83,7 @@ const OrganizerPost = () => {
       //  UPDATE API
       if (editData) {
         await axios.patch(
-          `https://platfrombooking.onrender.com/organizerPost/update/${editData._id}`,
+          `https://emailcase.onrender.com/organizerPost/update/${editData._id}`,
           data,
           {
             headers: {
@@ -104,7 +104,7 @@ const OrganizerPost = () => {
       //  CREATE API
       else {
         await axios.post(
-          "https://platfrombooking.onrender.com/organizerPost/post",
+          "https://emailcase.onrender.com/organizerPost/post",
           data,
           {
             headers: {
