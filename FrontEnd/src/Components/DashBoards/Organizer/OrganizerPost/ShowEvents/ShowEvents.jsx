@@ -12,7 +12,7 @@ const ShowEvents = () => {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(
-        "https://backenddeployeement.onrender.com/organizerPost/get"
+        "https://updatedcode-uyu5.onrender.com/organizerPost/get"
       );
 
       setEvents(res.data.data || res.data || []);
@@ -46,7 +46,7 @@ const ShowEvents = () => {
           const token = sessionStorage.getItem("token");
 
           await axios.delete(
-            `https://backenddeployeement.onrender.com/organizerPost/delete/${id}`,
+            `https://updatedcode-uyu5.onrender.com/organizerPost/delete/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

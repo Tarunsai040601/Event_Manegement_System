@@ -10,7 +10,7 @@ const DisplayEvents = () => {
     const fetchEvents = async () => {
       try {
         const res = await axios.get(
-          "https://backenddeployeement.onrender.com/organizerPost/get"
+          "https://updatedcode-uyu5.onrender.com/organizerPost/get"
         );
 
         const data =
