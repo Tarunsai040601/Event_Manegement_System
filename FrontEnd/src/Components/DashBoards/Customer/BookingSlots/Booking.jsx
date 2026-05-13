@@ -56,7 +56,7 @@ const Booking = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:8015/booking/create",
+        "https://event-manegement-system.onrender.com/booking/create",
         payload,
         {
           headers: {
