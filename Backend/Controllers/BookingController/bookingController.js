@@ -77,16 +77,12 @@ const createBooking = async (req, res) => {
 //  GET BOOKINGS 
 const getMyBookings = async (req, res) => {
   try {
-    //  filter per user
-    const email = req.user?.email; 
-
-    const bookings = await Booking.find({ email });
+    const bookings = await Booking.find(); 
 
     res.status(200).json({
       message: "Bookings fetched successfully",
       data: bookings,
     });
-
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
