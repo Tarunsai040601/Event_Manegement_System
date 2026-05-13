@@ -1,19 +1,11 @@
 const Booking = require("../../Model/BookingSchema/BookingSchema.js");
 const sendMail = require("../../utils/sendMail.js");
 
-//  CREATE BOOKING 
+// CREATE BOOKING
 const createBooking = async (req, res) => {
   try {
-    const {
-      name,
-      location,
-      age,
-      qualification,
-      eventName,
-    } = req.body;
-
-//  from JWT middleware
-    const email = req.user?.email; 
+    const { name, location, age, qualification, eventName } = req.body;
+    const email = req.user?.email;
 
     if (!name || !location || !age || !qualification || !eventName || !email) {
       return res.status(400).json({
@@ -21,7 +13,7 @@ const createBooking = async (req, res) => {
       });
     }
 
-    //  Duplicate check (better unique check)
+    // duplicate check
     const existingBooking = await Booking.findOne({
       email,
       eventName,
@@ -44,8 +36,14 @@ const createBooking = async (req, res) => {
 
     await newBooking.save();
 
-    //  SEND EMAIL AFTER BOOKING
-    await sendMail(
+    // RESPONSE FIRST
+    res.status(201).json({
+      message: "Booking successful",
+      data: newBooking,
+    });
+
+    // EMAIL IN BACKGROUND
+    sendMail(
       email,
       "🎉 Event Booking Confirmation",
       `
@@ -62,33 +60,32 @@ const createBooking = async (req, res) => {
         <br/>
         <p>Thank you for booking with us 🙌</p>
       `
-    );
-
-    res.status(201).json({
-      message: "Booking successful & email sent",
-      data: newBooking,
+    ).catch((err) => {
+      console.log("Email failed:", err.message);
     });
 
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
-//  GET BOOKINGS 
 const getMyBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find(); 
+    const bookings = await Booking.find();
 
     res.status(200).json({
       message: "Bookings fetched successfully",
       data: bookings,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
-// module exports
 module.exports = {
   createBooking,
   getMyBookings,
