@@ -10,7 +10,7 @@ const {
 } = require("../../Controllers/OrganisationPostController/organizepostController.js");
 const upload = require("../../Middleware/Multer/Multer.js");
 const authMiddleware = require("../../Middleware/authMiddleware/authMiddleware.js");
-const roleMiddleware = require("../../Middleware/roleMiddleware/roleMiddleware.js");
+const roleMiddleware = require("../../Middleware/RoleMiddleware/RoleMiddleware.js");
 
 // store the express with router
 const organizerPost = expree.Router();
