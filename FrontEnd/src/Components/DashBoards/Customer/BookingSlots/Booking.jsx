@@ -13,13 +13,15 @@ const Booking = () => {
   const username = sessionStorage.getItem("username");
   const token = sessionStorage.getItem("token");
 
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     location: "",
     age: "",
     qualification: "",
   });
 
-  //  redirect if event missing
+  // redirect if event missing
   useEffect(() => {
     if (!event) {
       navigate("/events");
@@ -36,7 +38,7 @@ const Booking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //  login check
+    // login check
     if (!token) {
       Swal.fire({
         icon: "warning",
@@ -45,6 +47,8 @@ const Booking = () => {
       navigate("/login");
       return;
     }
+
+    setLoading(true);
 
     try {
       const payload = {
@@ -65,20 +69,18 @@ const Booking = () => {
         }
       );
 
-      //  SUCCESS
       Swal.fire({
         icon: "success",
         title: "Booking Successful 🎉",
         text: res.data.message,
         confirmButtonText: "OK",
       }).then(() => {
-        navigate("/events"); // redirect back
+        navigate("/events");
       });
 
     } catch (error) {
       const msg = error.response?.data?.message;
 
-      //  duplicate booking
       if (msg === "You already have booked this event") {
         Swal.fire({
           icon: "warning",
@@ -91,6 +93,8 @@ const Booking = () => {
           title: msg || "Booking Failed",
         });
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -100,13 +104,13 @@ const Booking = () => {
 
       <form onSubmit={handleSubmit} className="booking-form">
 
-        {/*  USER */}
+        {/* USER */}
         <input type="text" value={username || ""} readOnly />
 
-        {/*  EVENT */}
+        {/* EVENT */}
         <input type="text" value={event?.title || ""} readOnly />
 
-        {/*  LOCATION */}
+        {/* LOCATION */}
         <input
           type="text"
           name="location"
@@ -115,7 +119,7 @@ const Booking = () => {
           required
         />
 
-        {/*  AGE */}
+        {/* AGE */}
         <input
           type="number"
           name="age"
@@ -124,7 +128,7 @@ const Booking = () => {
           required
         />
 
-        {/*  QUALIFICATION */}
+        {/* QUALIFICATION */}
         <input
           type="text"
           name="qualification"
@@ -133,8 +137,8 @@ const Booking = () => {
           required
         />
 
-        <button type="submit">
-          Book Now
+        <button type="submit" disabled={loading}>
+          {loading ? "Booking..." : "Book Now"}
         </button>
 
       </form>
