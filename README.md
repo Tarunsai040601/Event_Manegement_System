@@ -2,7 +2,7 @@
 
 A full-stack event booking platform built with the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform supports three distinct user roles — Admin, Organizer, and Customer — each with their own dedicated dashboard and feature set.
 
-
+#GitHub:  https://github.com/Tarunsai040601/Event_Manegement_System
 
 📌 Table of Contents
 
