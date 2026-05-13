@@ -52,7 +52,7 @@ sessionStorage.removeItem("role");
     <nav className="navbar">
       {/* Logo */}
       <div className="logo">
-        <h1>EventManagement</h1>
+        <h1>EventBooking Platform</h1>
       </div>
 
       {/* Nav Links */}

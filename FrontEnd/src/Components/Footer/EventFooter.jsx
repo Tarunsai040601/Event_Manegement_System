@@ -9,7 +9,7 @@ const EventFooter = () => {
 
       {/* Brand */}
       <div className="footer-brand">
-        <p className="footer-logo">@EventManagement</p>
+        <p className="footer-logo">@EventBooking Platform</p>
         <p className="footer-tagline">Moments worth celebrating</p>
       </div>
 
@@ -61,7 +61,7 @@ const EventFooter = () => {
       {/* Bottom */}
       <div className="footer-bottom">
         <p>
-          © 2026 <span className="highlight">@EventManagement</span> · Crafted
+          © 2026 <span className="highlight">@EventBooking Platform</span> · Crafted
           with ♥ by Tarun Sai
         </p>
       </div>
