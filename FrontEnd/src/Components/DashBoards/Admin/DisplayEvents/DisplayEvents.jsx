@@ -10,7 +10,7 @@ const DisplayEvents = () => {
     const fetchEvents = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8015/organizerPost/get"
+          "https://platfrombooking.onrender.com/organizerPost/get"
         );
 
         const data =

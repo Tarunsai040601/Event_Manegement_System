@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8015/api/login", formData);
+      const res = await axios.post("https://platfrombooking.onrender.com/api/login", formData);
 
       Swal.fire({
         icon: "success",

@@ -29,7 +29,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8015/api/register",
+        "https://platfrombooking.onrender.com/api/register",
         formData
       );
 
