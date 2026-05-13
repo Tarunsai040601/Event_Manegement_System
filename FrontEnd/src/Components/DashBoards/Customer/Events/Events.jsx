@@ -25,7 +25,7 @@ const Events = () => {
     fetchEvents();
   }, []);
 
-  // ✅ SINGLE CLEAN FUNCTION
+  //  SINGLE CLEAN FUNCTION
   const handleBook = (event) => {
     const token = sessionStorage.getItem("token");
 

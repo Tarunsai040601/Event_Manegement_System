@@ -1,7 +1,7 @@
 const postModel = require("../../Model/OrganizerPost/OrganizerSchema.js");
 const cloudinary = require("../../Middleware/Cloudinary/Cloudinary.js");
 
-// ================= CREATE POST =================
+//  CREATE POST 
 const postController = async (req, res) => {
   try {
     const {
@@ -52,7 +52,7 @@ const postController = async (req, res) => {
   }
 };
 
-// ================= GET ALL POSTS =================
+//  GET ALL POSTS 
 const getpostController = async (req, res) => {
   try {
     const posts = await postModel.find().sort({ createdAt: -1 });
@@ -66,7 +66,7 @@ const getpostController = async (req, res) => {
   }
 };
 
-// ================= GET BY ID =================
+//  GET BY ID 
 const getbyidcontroller = async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,7 +86,7 @@ const getbyidcontroller = async (req, res) => {
   }
 };
 
-// ================= UPDATE POST =================
+//  UPDATE POST 
 const updatepostcontroller = async (req, res) => {
   try {
     const { id } = req.params;
@@ -131,7 +131,7 @@ const updatepostcontroller = async (req, res) => {
   }
 };
 
-// ================= DELETE POST =================
+//  DELETE POST 
 const deletepostcontroller = async (req, res) => {
   try {
     const { id } = req.params;
@@ -150,7 +150,7 @@ const deletepostcontroller = async (req, res) => {
   }
 };
 
-// ================= EXPORT =================
+//  EXPORT 
 module.exports = {
   getpostController,
   postController,

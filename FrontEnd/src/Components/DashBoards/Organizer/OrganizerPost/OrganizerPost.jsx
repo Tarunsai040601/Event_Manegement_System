@@ -23,7 +23,7 @@ const OrganizerPost = () => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState("");
 
-  // 🔥 LOAD DATA FOR EDIT
+  //  LOAD DATA FOR EDIT
   useEffect(() => {
     if (editData) {
       setFormData({
@@ -40,7 +40,7 @@ const OrganizerPost = () => {
     }
   }, [editData]);
 
-  // 🔥 TEXT INPUT CHANGE
+  //  TEXT INPUT CHANGE
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -48,7 +48,7 @@ const OrganizerPost = () => {
     });
   };
 
-  // 🔥 IMAGE HANDLER
+  //  IMAGE HANDLER
   const handleImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
@@ -58,7 +58,7 @@ const OrganizerPost = () => {
     }
   };
 
-  // 🔥 SUBMIT (CREATE + UPDATE)
+  //  SUBMIT (CREATE + UPDATE)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -75,12 +75,12 @@ const OrganizerPost = () => {
       data.append("date", formData.date);
       data.append("price", formData.price);
 
-      // 🔥 image optional (update lo only if new image selected)
+      //  image optional (update lo only if new image selected)
       if (image) {
         data.append("image", image);
       }
 
-      // 🔥 UPDATE API
+      //  UPDATE API
       if (editData) {
         await axios.patch(
           `http://localhost:8015/organizerPost/update/${editData._id}`,
@@ -101,7 +101,7 @@ const OrganizerPost = () => {
         });
       }
 
-      // 🔥 CREATE API
+      //  CREATE API
       else {
         await axios.post(
           "http://localhost:8015/organizerPost/post",
@@ -198,10 +198,10 @@ const OrganizerPost = () => {
           required
         />
 
-        {/* 🔥 IMAGE UPLOAD */}
+        {/*  IMAGE UPLOAD */}
         <input type="file" accept="image/*" onChange={handleImage} />
 
-        {/* 🔥 PREVIEW */}
+        {/*  PREVIEW */}
         {preview && (
           <div className="image-preview">
             <img src={preview} alt="preview" />

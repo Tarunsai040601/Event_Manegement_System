@@ -19,7 +19,7 @@ const Booking = () => {
     qualification: "",
   });
 
-  // 🔐 redirect if event missing
+  //  redirect if event missing
   useEffect(() => {
     if (!event) {
       navigate("/events");
@@ -36,7 +36,7 @@ const Booking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🔐 login check
+    //  login check
     if (!token) {
       Swal.fire({
         icon: "warning",
@@ -65,7 +65,7 @@ const Booking = () => {
         }
       );
 
-      // 🎉 SUCCESS
+      //  SUCCESS
       Swal.fire({
         icon: "success",
         title: "Booking Successful 🎉",
@@ -78,7 +78,7 @@ const Booking = () => {
     } catch (error) {
       const msg = error.response?.data?.message;
 
-      // 🚫 duplicate booking
+      //  duplicate booking
       if (msg === "You already have booked this event") {
         Swal.fire({
           icon: "warning",
@@ -100,13 +100,13 @@ const Booking = () => {
 
       <form onSubmit={handleSubmit} className="booking-form">
 
-        {/* 👤 USER */}
+        {/*  USER */}
         <input type="text" value={username || ""} readOnly />
 
-        {/* 🎯 EVENT */}
+        {/*  EVENT */}
         <input type="text" value={event?.title || ""} readOnly />
 
-        {/* 📍 LOCATION */}
+        {/*  LOCATION */}
         <input
           type="text"
           name="location"
@@ -115,7 +115,7 @@ const Booking = () => {
           required
         />
 
-        {/* 🎂 AGE */}
+        {/*  AGE */}
         <input
           type="number"
           name="age"
@@ -124,7 +124,7 @@ const Booking = () => {
           required
         />
 
-        {/* 🎓 QUALIFICATION */}
+        {/*  QUALIFICATION */}
         <input
           type="text"
           name="qualification"

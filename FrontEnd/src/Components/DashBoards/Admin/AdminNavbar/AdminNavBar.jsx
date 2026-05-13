@@ -37,7 +37,7 @@ const AdminNavBar = () => {
   return (
     <nav className="admin-navbar">
 
-      {/* ✅ CLICKABLE LOGO / TITLE */}
+      {/*  CLICKABLE LOGO / TITLE */}
       <div
         className="admin-logo"
         onClick={() => navigate("/admin")}

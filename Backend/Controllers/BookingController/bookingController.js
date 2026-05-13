@@ -1,7 +1,7 @@
 const Booking = require("../../Model/BookingSchema/BookingSchema.js");
 const sendMail = require("../../utils/sendMail.js");
 
-// ================= CREATE BOOKING =================
+//  CREATE BOOKING 
 const createBooking = async (req, res) => {
   try {
     const {
@@ -12,7 +12,8 @@ const createBooking = async (req, res) => {
       eventName,
     } = req.body;
 
-    const email = req.user?.email; // ✅ from JWT middleware
+//  from JWT middleware
+    const email = req.user?.email; 
 
     if (!name || !location || !age || !qualification || !eventName || !email) {
       return res.status(400).json({
@@ -20,7 +21,7 @@ const createBooking = async (req, res) => {
       });
     }
 
-    // 🔥 Duplicate check (better unique check)
+    //  Duplicate check (better unique check)
     const existingBooking = await Booking.findOne({
       email,
       eventName,
@@ -43,7 +44,7 @@ const createBooking = async (req, res) => {
 
     await newBooking.save();
 
-    // 📧 SEND EMAIL AFTER BOOKING
+    //  SEND EMAIL AFTER BOOKING
     await sendMail(
       email,
       "🎉 Event Booking Confirmation",
@@ -73,10 +74,11 @@ const createBooking = async (req, res) => {
   }
 };
 
-// ================= GET BOOKINGS =================
+//  GET BOOKINGS 
 const getMyBookings = async (req, res) => {
   try {
-    const email = req.user?.email; // ✅ filter per user
+    //  filter per user
+    const email = req.user?.email; 
 
     const bookings = await Booking.find({ email });
 
@@ -90,6 +92,7 @@ const getMyBookings = async (req, res) => {
   }
 };
 
+// module exports
 module.exports = {
   createBooking,
   getMyBookings,
