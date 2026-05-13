@@ -12,7 +12,7 @@ const ShowEvents = () => {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(
-        "https://emailcase.onrender.com/organizerPost/get"
+        "https://email-af4t.onrender.com/organizerPost/get"
       );
 
       setEvents(res.data.data || res.data || []);
@@ -46,7 +46,7 @@ const ShowEvents = () => {
           const token = sessionStorage.getItem("token");
 
           await axios.delete(
-            `https://emailcase.onrender.com/organizerPost/delete/${id}`,
+            `https://email-af4t.onrender.com/organizerPost/delete/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

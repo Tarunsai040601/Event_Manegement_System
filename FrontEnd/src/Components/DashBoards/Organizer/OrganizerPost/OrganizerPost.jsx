@@ -83,7 +83,7 @@ const OrganizerPost = () => {
       //  UPDATE API
       if (editData) {
         await axios.patch(
-          `https://emailcase.onrender.com/organizerPost/update/${editData._id}`,
+          `https://email-af4t.onrender.com/organizerPost/update/${editData._id}`,
           data,
           {
             headers: {
@@ -104,7 +104,7 @@ const OrganizerPost = () => {
       //  CREATE API
       else {
         await axios.post(
-          "https://emailcase.onrender.com/organizerPost/post",
+          "https://email-af4t.onrender.com/organizerPost/post",
           data,
           {
             headers: {

@@ -11,7 +11,7 @@ const BookEvent = () => {
       const token = sessionStorage.getItem("token");
 
       const res = await axios.get(
-        "https://emailcase.onrender.com/booking/my",
+        "https://email-af4t.onrender.com/booking/my",
         {
           headers: {
             Authorization: `Bearer ${token}`,
