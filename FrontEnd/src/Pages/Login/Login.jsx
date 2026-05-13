@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://event-manegement-system.onrender.com/api/login", formData);
+      const res = await axios.post("https://event-manegement-system-1.onrender.com/api/login", formData);
 
       Swal.fire({
         icon: "success",

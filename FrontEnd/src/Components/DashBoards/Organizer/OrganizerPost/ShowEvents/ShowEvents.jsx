@@ -46,7 +46,7 @@ const ShowEvents = () => {
           const token = sessionStorage.getItem("token");
 
           await axios.delete(
-            `https://event-manegement-system.onrender.com/organizerPost/delete/${id}`,
+            `https://event-manegement-system-1.onrender.com/organizerPost/delete/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

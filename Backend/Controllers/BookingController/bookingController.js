@@ -43,26 +43,97 @@ const createBooking = async (req, res) => {
     });
 
     // EMAIL IN BACKGROUND
-    sendMail(
-      email,
-      "🎉 Event Booking Confirmation",
-      `
-        <h2>Booking Successful 🎉</h2>
-        <p>Hi ${name},</p>
+   sendMail(
+  email,
+  "🎉 Event Booking Confirmation",
+  `
+  <div style="font-family: Arial, sans-serif; background:#f4f6f9; padding:30px;">
+    
+    <div style="
+      max-width:600px;
+      margin:auto;
+      background:white;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    ">
+      
+      <!-- Header -->
+      <div style="
+        background:linear-gradient(135deg,#28a745,#20c997);
+        color:white;
+        padding:25px;
+        text-align:center;
+      ">
+        <h1 style="margin:0;">✅ Booking Confirmed</h1>
+        <p style="margin-top:8px;">Your event has been booked successfully</p>
+      </div>
 
-        <p>You successfully booked:</p>
-        <h3>${eventName}</h3>
+      <!-- Body -->
+      <div style="padding:30px; color:#333;">
+        <h2>Hello ${name}, 👋</h2>
+        <p>
+          Your booking has been confirmed successfully. Here are your booking details:
+        </p>
 
-        <p><b>Location:</b> ${location}</p>
-        <p><b>Age:</b> ${age}</p>
-        <p><b>Qualification:</b> ${qualification}</p>
+        <table style="
+          width:100%;
+          border-collapse:collapse;
+          margin-top:20px;
+        ">
+          <tr>
+            <td style="padding:12px; border:1px solid #ddd;"><b>🎫 Event</b></td>
+            <td style="padding:12px; border:1px solid #ddd;">${eventName}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px; border:1px solid #ddd;"><b>📍 Location</b></td>
+            <td style="padding:12px; border:1px solid #ddd;">${location}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px; border:1px solid #ddd;"><b>🎂 Age</b></td>
+            <td style="padding:12px; border:1px solid #ddd;">${age}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px; border:1px solid #ddd;"><b>🎓 Qualification</b></td>
+            <td style="padding:12px; border:1px solid #ddd;">${qualification}</td>
+          </tr>
+        </table>
 
-        <br/>
-        <p>Thank you for booking with us 🙌</p>
-      `
-    ).catch((err) => {
-      console.log("Email failed:", err.message);
-    });
+        <div style="
+          margin-top:25px;
+          padding:15px;
+          background:#e8f8ee;
+          border-left:5px solid #28a745;
+          border-radius:8px;
+        ">
+          <p style="margin:0; color:#155724;">
+            🎉 <b>Status:</b> Approved & Confirmed
+          </p>
+        </div>
+
+        <p style="margin-top:25px;">
+          Thank you for booking with us 🙌 <br/>
+          We look forward to seeing you at the event.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div style="
+        background:#f8f9fa;
+        padding:18px;
+        text-align:center;
+        font-size:14px;
+        color:#666;
+      ">
+        © 2026 Event Management System | All Rights Reserved
+      </div>
+
+    </div>
+  </div>
+  `
+).catch((err) => {
+  console.log("Email failed:", err.message);
+});
 
   } catch (error) {
     res.status(500).json({
