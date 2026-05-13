@@ -83,7 +83,7 @@ const OrganizerPost = () => {
       //  UPDATE API
       if (editData) {
         await axios.patch(
-          `https://event-manegement-system-1.onrender.com/organizerPost/update/${editData._id}`,
+          `https://backenddeployeement.onrender.com/organizerPost/update/${editData._id}`,
           data,
           {
             headers: {
@@ -104,7 +104,7 @@ const OrganizerPost = () => {
       //  CREATE API
       else {
         await axios.post(
-          "https://event-manegement-system-1.onrender.com/organizerPost/post",
+          "https://backenddeployeement.onrender.com/organizerPost/post",
           data,
           {
             headers: {
