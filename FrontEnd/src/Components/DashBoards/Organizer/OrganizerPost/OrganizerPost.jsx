@@ -83,7 +83,7 @@ const OrganizerPost = () => {
       //  UPDATE API
       if (editData) {
         await axios.patch(
-          `https://updatedcode-uyu5.onrender.com/organizerPost/update/${editData._id}`,
+          `http://localhost:8015/organizerPost/update/${editData._id}`,
           data,
           {
             headers: {
@@ -104,7 +104,7 @@ const OrganizerPost = () => {
       //  CREATE API
       else {
         await axios.post(
-          "https://updatedcode-uyu5.onrender.com/organizerPost/post",
+          "http://localhost:8015/organizerPost/post",
           data,
           {
             headers: {

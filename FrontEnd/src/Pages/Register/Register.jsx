@@ -29,7 +29,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "https://updatedcode-uyu5.onrender.com/api/register",
+        "http://localhost:8015/api/register",
         formData
       );
 

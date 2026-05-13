@@ -14,7 +14,7 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const res = await axios.get(
-          "https://updatedcode-uyu5.onrender.com/organizerPost/get"
+          "http://localhost:8015/organizerPost/get"
         );
         setEvents(res.data.data || []);
       } catch (error) {
