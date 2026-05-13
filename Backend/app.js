@@ -4,15 +4,14 @@ const express = require("express");
 // INITILSATION THE DOTENV FILE
 const dotenv = require("dotenv").config();
 
-// cors
+// corss
 const cors=require('cors')
 
 // EXPORT THE AUTHROUTER
 const authRouter = require("./Routers/AuthRouters/AuthRouters.js");
-const connection = require("./Configuration/Config.js");
 const organizerPost = require("./Routers/OrganizerPosts/OrganizerPosts.js");
 const Bookingrouter = require("./Routers/BookingRouter/bookingRoutes.js");
-
+const Dataconnection = require("./Configuration/Config.js");
 
 // STORE THE EXPRESS DETAILS IN ONE VARIABLE
 const app = express();
@@ -37,8 +36,7 @@ const listenFunction = () => {
   console.log(`server is runing on the port http://localhost:${port}`);
 };
 
+
 // LISTEN
 app.listen(port, listenFunction);
-
-// DATABASE CONNECTION
-connection;
+Dataconnection

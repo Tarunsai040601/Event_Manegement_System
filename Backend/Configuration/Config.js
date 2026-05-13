@@ -24,5 +24,5 @@ async function DatabaseConnection() {
   }
 }
 
-const connection=DatabaseConnection()
-module.exports=connection
+const Dataconnection=DatabaseConnection()
+module.exports=Dataconnection
