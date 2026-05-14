@@ -12,7 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "@sendgrid/mail": "^8.1.6",
+=======
+     "@sendgrid/mail": "^8.1.6",
+>>>>>>> fcfb955110323ac73ad4f48c428313215443c275
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.10.0",
     "cors": "^2.8.6",
