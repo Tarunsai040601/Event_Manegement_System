@@ -7,7 +7,7 @@ const sendMail = async (to, subject, html) => {
   try {
     const msg = {
       to,
-      from:process.env.EMAIL_USER,
+      from:"tarunsai04062002@gmail.com",
       subject,
       html,
     };
