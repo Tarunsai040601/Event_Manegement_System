@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://email-af4t.onrender.com/api/login", formData);
+      const res = await axios.post("https://emailupdate-941x.onrender.com/api/login", formData);
 
       Swal.fire({
         icon: "success",

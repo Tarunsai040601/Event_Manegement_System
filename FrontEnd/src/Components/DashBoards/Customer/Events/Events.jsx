@@ -14,7 +14,7 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const res = await axios.get(
-          "https://email-af4t.onrender.com/organizerPost/get"
+          "https://emailupdate-941x.onrender.com/organizerPost/get"
         );
         setEvents(res.data.data || []);
       } catch (error) {
