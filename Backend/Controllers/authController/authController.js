@@ -1,10 +1,12 @@
-// EXPORTING THE ALL FROM THE AUTHMODEL
+// EXPORTING THE ALL FROM THE MODELS
 const admin = require("../../Model/authModel/adminSchema.js");
 const customer = require("../../Model/authModel/customerSchema.js");
 const organizer = require("../../Model/authModel/organizerSchema.js");
 
-// bcryptjs
-const bcrypt=require('bcryptjs')
+// bcryptjs for hasing the password
+const bcrypt = require("bcryptjs");
+
+// used for gnerate the tokens
 const jwt = require("jsonwebtoken");
 
 // helper function
@@ -41,7 +43,7 @@ const registerController = async (req, res) => {
         message: "User already exists",
       });
     }
-
+    // here i used bcrypt.hashing bcz to convert orginal password into unreadble format and also used salturation
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await Model.create({
@@ -66,6 +68,7 @@ const registerController = async (req, res) => {
 // LOGIN CONTROLLER
 const loginController = async (req, res) => {
   try {
+    // taking the body only email and password
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -74,7 +77,7 @@ const loginController = async (req, res) => {
       });
     }
 
-    //   role needed nahi (DB nundi auto detect)
+    //   role needed all (DB to auto detect)
     let user =
       (await admin.findOne({ email })) ||
       (await customer.findOne({ email })) ||
@@ -102,7 +105,7 @@ const loginController = async (req, res) => {
         role: user.role,
       },
       process.env.SECRET_KEY,
-      { expiresIn: "1d" }
+      { expiresIn: "1d" },
     );
 
     res.status(200).json({
@@ -115,7 +118,6 @@ const loginController = async (req, res) => {
       },
       token,
     });
-
   } catch (error) {
     console.log("login error:", error);
     res.status(500).json({

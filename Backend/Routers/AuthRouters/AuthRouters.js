@@ -1,5 +1,7 @@
 // INITILISATION THE EXPRESS
 const express = require("express");
+
+// acess the function controllers from the controllers
 const {
   registerController,
   loginController,
