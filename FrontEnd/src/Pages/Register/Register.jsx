@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../../config.js";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -29,7 +30,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "https://emailupdate-941x.onrender.com/api/register",
+        `${API_BASE_URL}/api/register`,
         formData
       );
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../../../config.js";
 import "./BookedEvents.css";
 
 const BookedEvents = () => {
@@ -11,7 +12,7 @@ const BookedEvents = () => {
       const token = sessionStorage.getItem("token");
 
       const res = await axios.get(
-        "https://emailupdate-941x.onrender.com/booking/my",
+        `${API_BASE_URL}/booking/my`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

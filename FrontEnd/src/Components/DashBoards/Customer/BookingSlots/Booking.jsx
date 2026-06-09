@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../../../config.js";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Booking.css";
@@ -60,7 +61,7 @@ const Booking = () => {
       };
 
       const res = await axios.post(
-        "https://emailupdate-941x.onrender.com/booking/create",
+        `${API_BASE_URL}/booking/create`,
         payload,
         {
           headers: {
