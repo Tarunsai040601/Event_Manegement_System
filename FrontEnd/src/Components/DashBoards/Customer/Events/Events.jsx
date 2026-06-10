@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_BASE_URL } from "../../../../config.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./Events.css";
@@ -15,7 +14,7 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const res = await axios.get(
-          `${API_BASE_URL}/organizerPost/get`
+          `https://event-manegement-system-1.onrender.com/organizerPost/get`
         );
         setEvents(res.data.data || []);
       } catch (error) {

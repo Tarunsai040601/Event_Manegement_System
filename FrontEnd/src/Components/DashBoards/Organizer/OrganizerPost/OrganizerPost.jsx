@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./OrganizerPost.css";
 import axios from "axios";
-import { API_BASE_URL } from "../../../../config.js";
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -84,7 +83,7 @@ const OrganizerPost = () => {
       //  UPDATE API
       if (editData) {
         await axios.patch(
-          `${API_BASE_URL}/organizerPost/update/${editData._id}`,
+          `https://event-manegement-system-1.onrender.com/organizerPost/update/${editData._id}`,
           data,
           {
             headers: {
@@ -105,7 +104,7 @@ const OrganizerPost = () => {
       //  CREATE API
       else {
         await axios.post(
-          `${API_BASE_URL}/organizerPost/post`,
+          `https://event-manegement-system-1.onrender.com/organizerPost/post`,
           data,
           {
             headers: {

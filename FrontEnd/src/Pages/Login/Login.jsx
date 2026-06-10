@@ -3,7 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
-import { API_BASE_URL } from "../../config.js";
+
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${API_BASE_URL}/api/login`, formData);
+      const res = await axios.post(`https://event-manegement-system-1.onrender.com/api/login`, formData);
 
       Swal.fire({
         icon: "success",

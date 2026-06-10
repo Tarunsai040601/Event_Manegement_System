@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ShowEvents.css";
 import axios from "axios";
-import { API_BASE_URL } from "../../../../../config.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +12,7 @@ const ShowEvents = () => {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(
-        `${API_BASE_URL}/organizerPost/get`
+        `https://event-manegement-system-1.onrender.com/organizerPost/get`
       );
 
       setEvents(res.data.data || res.data || []);
@@ -47,7 +46,7 @@ const ShowEvents = () => {
           const token = sessionStorage.getItem("token");
 
           await axios.delete(
-            `${API_BASE_URL}/organizerPost/delete/${id}`,
+            `https://event-manegement-system-1.onrender.com/organizerPost/delete/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
